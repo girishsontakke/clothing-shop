@@ -27,7 +27,7 @@ export default class SignIN extends Component {
       <div className="sign-in">
         <h1>I already have an account</h1>
         <span>Sign in with email and password</span>
-        <form action="POST">
+        <form action="POST" onSubmit={this.handleSubmit}>
           <FormInput
             name="email"
             type="email"
