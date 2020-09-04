@@ -15,6 +15,9 @@ const Header = () => (
       <Link className="option" to="/contact">
         {"contact".toUpperCase()}
       </Link>
+      <Link className="option" to="/signin">
+        {"Sign in".toUpperCase()}
+      </Link>
     </div>
   </div>
 );
