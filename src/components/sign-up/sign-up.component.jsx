@@ -51,7 +51,7 @@ class SignUp extends React.Component {
       <div className="sign-up">
         <h1 className="title">I do not have account</h1>
         <span>Sign Up With Your Email And Password</span>
-        <form className="sign-up-form" onSubmit={() => this.handleSubmit}>
+        <form className="sign-up-form" onSubmit={this.handleSubmit}>
           <FormInput
             type="text"
             name="displayName"
@@ -78,7 +78,7 @@ class SignUp extends React.Component {
           />
           <FormInput
             type="password"
-            name="confirm_password"
+            name="confirmPassword"
             value={confirmPassword}
             handleChange={this.handleChange}
             label="Confirm Password"
