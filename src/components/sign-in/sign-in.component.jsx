@@ -63,7 +63,7 @@ class SignIN extends Component {
               onClick={SignInWithGoogle}
               isGoogleSignIn
             >
-              Google SignIn
+              SignIn With Google
             </CustomButton>
           </div>
         </form>
