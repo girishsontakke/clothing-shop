@@ -4,11 +4,13 @@ import { Link } from "react-router-dom";
 import "./header.styles.scss";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 //redux
 import { useSelector } from "react-redux";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { hiddenDropDown } = useSelector((state) => state.cart);
   return (
     <div className="header">
       <Link className="logo-container" to="/">
@@ -30,9 +32,9 @@ const Header = () => {
             {"Sign in".toUpperCase()}
           </Link>
         )}
-
         <CartIcon />
       </div>
+      {!hiddenDropDown ? <CartDropDown /> : null}
     </div>
   );
 };
