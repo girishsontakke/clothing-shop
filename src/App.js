@@ -1,12 +1,14 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
 import "./App.css";
+//components
 import HomePage from "./pages/homepage/homepage.component";
 import ShopPage from "./pages/shop/shop.component";
 import Header from "./components/header/header.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
+//firebase
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
-
+//react-router-dom
+import { Route, Switch } from "react-router-dom";
 //redux
 import { setCurrentUser } from "./redux/user/user.action";
 import { connect } from "react-redux";
@@ -14,17 +16,18 @@ import { connect } from "react-redux";
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
+    const { setCurretUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef.onSnapshot((snapshot) => {
-          this.props.setCurretUser({
+          setCurretUser({
             id: snapshot.id,
-            ...snapshot.data,
+            ...snapshot.data(),
           });
         });
       } else {
-        this.props.setCurretUser(userAuth);
+        setCurretUser(userAuth);
       }
     });
   }
