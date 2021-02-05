@@ -12,6 +12,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 //redux
 import { setCurrentUser } from "./redux/user/user.action";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
+import { selectCurrentUser } from "./redux/user/user.selector";
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -55,11 +57,9 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = ({ user }) => {
-  return {
-    currentUser: user.currentUser,
-  };
-};
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+});
 const mapDispatchToProps = (dispatch) => {
   return { setCurretUser: (user) => dispatch(setCurrentUser(user)) };
 };
