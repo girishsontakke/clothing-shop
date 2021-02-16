@@ -24,12 +24,23 @@
 
   .quantity,
   .price {
-    padding-left: 40px;
+    padding-left: 20px;
   }
 
   .remove-button {
     padding-left: 12px;
     font-size: 2rem;
     cursor: pointer;
+  }
+  .quantity {
+    display: flex;
+
+    .arrow {
+      cursor: pointer;
+      font-weight: lighter;
+    }
+    .value {
+      margin: 0 10px;
+    }
   }
 }
