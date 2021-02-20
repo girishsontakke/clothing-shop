@@ -10,10 +10,12 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 //react-router-dom
 import { Route, Switch, Redirect } from "react-router-dom";
 //redux
-import { setCurrentUser } from "./redux/user/user.action";
+import {
+  setCurrentUser,
+  selectCurrentUser,
+} from "./redux-toolkit/user/userSlice";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import { selectCurrentUser } from "./redux/user/user.selector";
 import CheckoutPage from "./pages/checkout/checkout.component";
 
 class App extends React.Component {
@@ -28,6 +30,7 @@ class App extends React.Component {
             id: snapshot.id,
             ...snapshot.data(),
           });
+          console.log(snapshot);
         });
       } else {
         setCurretUser(userAuth);

@@ -1,7 +1,11 @@
 import "./checkout-item.styles.scss";
 import React from "react";
 import { connect } from "react-redux";
-import { addItem, clearItem, removeItem } from "../../redux/cart/cart.action";
+import {
+  addItem,
+  clearItem,
+  removeItem,
+} from "../../redux-toolkit/cart/cartSlice";
 
 const CheckoutItem = ({ item, dispatch }) => (
   <div className="checkout-item">
