@@ -10,10 +10,7 @@ import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 //react-router-dom
 import { Route, Switch, Redirect } from "react-router-dom";
 //redux
-import {
-  setCurrentUser,
-  selectCurrentUser,
-} from "./redux-toolkit/user/userSlice";
+import { setCurrentUser, selectCurrentUser } from "./redux/user/userSlice";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import CheckoutPage from "./pages/checkout/checkout.component";

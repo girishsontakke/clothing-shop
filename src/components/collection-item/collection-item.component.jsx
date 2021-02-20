@@ -4,7 +4,7 @@ import CustomButton from "../custom-button/custom-button.component";
 import "./collection-item.styles.scss";
 //redux
 import { useDispatch } from "react-redux";
-import { addItem } from "../../redux-toolkit/cart/cartSlice";
+import { addItem } from "../../redux/cart/cartSlice";
 
 const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;

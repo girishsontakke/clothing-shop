@@ -1,11 +1,7 @@
 import "./checkout-item.styles.scss";
 import React from "react";
 import { connect } from "react-redux";
-import {
-  addItem,
-  clearItem,
-  removeItem,
-} from "../../redux-toolkit/cart/cartSlice";
+import { addItem, clearItem, removeItem } from "../../redux/cart/cartSlice";
 
 const CheckoutItem = ({ item, dispatch }) => (
   <div className="checkout-item">
@@ -14,13 +10,13 @@ const CheckoutItem = ({ item, dispatch }) => (
     </div>
     <span className="name"> {item.name} </span>
     <span className="quantity">
-      <div className="arrow" onClick={() => dispatch(removeItem(item))}>
+      <button className="arrow" onClick={() => dispatch(removeItem(item))}>
         &#10094;
-      </div>
+      </button>
       <span className="value">{item.quantity}</span>
-      <div className="arrow" onClick={() => dispatch(addItem(item))}>
+      <button className="arrow" onClick={() => dispatch(addItem(item))}>
         &#10095;
-      </div>
+      </button>
     </span>
     <span className="price"> ${item.price} </span>
     <span className="remove-button" onClick={() => dispatch(clearItem(item))}>
