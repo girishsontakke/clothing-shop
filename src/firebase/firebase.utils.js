@@ -22,8 +22,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
 
   if (!snapShot.exists) {
     const { displayName, email } = userAuth;
-    const createdAt = firebase.firestore.FieldValue.serverTimestamp();
-
+    let createdAt = firebase.firestore.FieldValue.serverTimestamp();
     try {
       userRef.set({ displayName, email, createdAt, ...additionalData });
     } catch (error) {

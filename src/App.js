@@ -27,7 +27,6 @@ class App extends React.Component {
             id: snapshot.id,
             ...snapshot.data(),
           });
-          console.log(snapshot);
         });
       } else {
         setCurretUser(userAuth);
