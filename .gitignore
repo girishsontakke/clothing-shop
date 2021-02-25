@@ -24,3 +24,11 @@ yarn-error.log*
 *.drawio
 *.gitignore
 yarn.lock
+
+# firebase
+.firebase/
+.firebaserc
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
