@@ -35,7 +35,7 @@ class SignUp extends React.Component {
         confirmPassword: "",
       });
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
     }
   };
   handleChange = (event) => {
