@@ -1,11 +1,18 @@
 import React from "react";
+import { connect } from "react-redux";
+import CollectionPreview from "../../components/collection-preview/collection-preview.component";
+import { selectCollection } from "../../redux/shop/shopSlice";
 
-function Collection({ match: { params } }) {
+function Collection({ collections }) {
   return (
     <div>
-      <h1>Collection Page</h1>
+      <CollectionPreview {...collections} />
     </div>
   );
 }
 
-export default Collection;
+const mapStateToProps = (state, ownProps) => ({
+  collections: selectCollection(ownProps.match.params.collectionId)(state),
+});
+
+export default connect(mapStateToProps)(Collection);

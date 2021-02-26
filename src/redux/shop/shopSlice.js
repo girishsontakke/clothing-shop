@@ -14,4 +14,12 @@ export const selectShopCollection = createSelector(
   [selectShop],
   (shop) => shop.collections
 );
+
+export const selectCollection = (collectionUrlParam) => {
+  return createSelector([selectShopCollection], (shopCollections) =>
+    shopCollections.find(
+      (shopCollection) => shopCollection.routeName === collectionUrlParam
+    )
+  );
+};
 export default shopSlice.reducer;
