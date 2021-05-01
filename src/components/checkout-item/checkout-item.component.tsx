@@ -1,9 +1,15 @@
 import "./checkout-item.styles.scss";
-import React from "react";
 import { connect } from "react-redux";
 import { addItem, clearItem, removeItem } from "../../redux/cart/cartSlice";
+import { CartItemType } from "../../types/models";
+import { StoreDispatch } from "../../redux/store";
 
-const CheckoutItem = ({ item, dispatch }) => (
+interface Iprops {
+  item: CartItemType;
+  dispatch: StoreDispatch;
+}
+
+const CheckoutItem: React.FC<Iprops> = ({ item, dispatch }) => (
   <div className="checkout-item">
     <div className="image-container">
       <img src={item.imageUrl} alt="item" />

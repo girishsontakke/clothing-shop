@@ -5,8 +5,15 @@ import { createStructuredSelector } from "reselect";
 import { selectCartItems, selectCartTotal } from "../../redux/cart/cartSlice";
 
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
+import { CartItemType } from "../../types/models";
+import { ReduxState } from "../../types/reduxState";
 
-function CheckoutPage({ cartItems, total }) {
+interface Iprops {
+  cartItems: CartItemType[];
+  total: number;
+}
+
+const CheckoutPage: React.FC<Iprops> = ({ cartItems, total }) => {
   return (
     <section className="checkout-page">
       <div className="checkout-header">
@@ -32,9 +39,9 @@ function CheckoutPage({ cartItems, total }) {
       <div className="total"> Total: ${total}</div>
     </section>
   );
-}
+};
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<ReduxState, Iprops>({
   cartItems: selectCartItems,
   total: selectCartTotal,
 });

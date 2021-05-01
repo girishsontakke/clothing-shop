@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { ReduxState } from "../../types/reduxState";
 
 const userSlice = createSlice({
   name: "user",
@@ -14,7 +15,7 @@ const userSlice = createSlice({
 
 export const { setCurrentUser } = userSlice.actions;
 
-const selectUser = (state) => state.user;
+const selectUser = (state: ReduxState) => state.user;
 
 export const selectCurrentUser = createSelector(
   [selectUser],

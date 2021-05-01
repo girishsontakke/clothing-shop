@@ -1,9 +1,11 @@
 import React from "react";
 import CollectionOverview from "../../components/collection-overview/collection-overview.component";
-import { Route, Switch } from "react-router-dom";
+import { Route, RouteComponentProps, Switch } from "react-router-dom";
 import Collection from "../Collection/collection.page";
 
-const ShopPage = ({ match }) => {
+interface Iprops extends RouteComponentProps {}
+
+const ShopPage: React.FC<Iprops> = ({ match }) => {
   return (
     <div className="shop-page">
       <Switch>

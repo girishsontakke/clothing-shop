@@ -1,15 +1,19 @@
-import React from "react";
 import CustomButton from "../custom-button/custom-button.component";
 
 import "./collection-item.styles.scss";
 //redux
 import { useDispatch } from "react-redux";
 import { addItem } from "../../redux/cart/cartSlice";
+import { CartItemType } from "../../types/models";
 
-const CollectionItem = ({ item }) => {
+interface Iprops {
+  item: CartItemType;
+}
+
+const CollectionItem: React.FC<Iprops> = ({ item }) => {
   const { name, price, imageUrl } = item;
   const dispatch = useDispatch();
-  const addItemToCart = (item) => dispatch(addItem(item));
+  const addItemToCart = (item: CartItemType) => dispatch(addItem(item));
   return (
     <div className="collection-item">
       <div

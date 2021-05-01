@@ -1,4 +1,3 @@
-import React from "react";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { NavLink } from "react-router-dom";
 import "./header.styles.scss";
@@ -10,8 +9,13 @@ import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/userSlice";
 import { selectHiddenDropDown } from "../../redux/cart/cartSlice";
 import { createStructuredSelector } from "reselect";
+import { ReduxState, User } from "../../types/reduxState";
 
-const Header = ({ currentUser, hiddenDropDown }) => {
+interface Iprops extends User {
+  hiddenDropDown: boolean;
+}
+
+const Header: React.FC<Iprops> = ({ currentUser, hiddenDropDown }) => {
   return (
     <div className="header">
       <NavLink className="logo-container" to="/">
@@ -43,7 +47,7 @@ const Header = ({ currentUser, hiddenDropDown }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<ReduxState, Iprops>({
   hiddenDropDown: selectHiddenDropDown,
   currentUser: selectCurrentUser,
 });

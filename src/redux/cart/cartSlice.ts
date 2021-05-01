@@ -1,4 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { CartItemType } from "../../types/models";
+import { ReduxState } from "../../types/reduxState";
 import {
   addItemToCartUtil,
   clearItemFromCartUtil,
@@ -34,7 +36,7 @@ export const {
   clearItem,
 } = cartSlice.actions;
 
-const selectCart = (state) => state.cart;
+const selectCart = (state: ReduxState) => state.cart;
 export const selectCartItems = createSelector(
   [selectCart],
   (cart) => cart.cartItems
@@ -44,7 +46,8 @@ export const selectCartItemsCount = createSelector(
   [selectCartItems],
   (cartItems) =>
     cartItems.reduce(
-      (accumulatedCount, cartItem) => accumulatedCount + cartItem.quantity,
+      (accumulatedCount: number, cartItem: CartItemType) =>
+        accumulatedCount + cartItem.quantity!,
       0
     )
 );
@@ -56,8 +59,8 @@ export const selectHiddenDropDown = createSelector(
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce(
-    (accumulatedTotal, cartItem) =>
-      accumulatedTotal + cartItem.quantity * cartItem.price,
+    (accumulatedTotal: number, cartItem: CartItemType) =>
+      accumulatedTotal + cartItem.quantity! * cartItem.price,
     0
   )
 );

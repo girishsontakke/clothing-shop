@@ -1,5 +1,6 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 import SHOP_DATA from "../../pages/shop/shop.data";
+import { ReduxState } from "../../types/reduxState";
 
 const shopSlice = createSlice({
   name: "shop",
@@ -8,14 +9,14 @@ const shopSlice = createSlice({
   },
   reducers: {},
 });
-const selectShop = (state) => state.shop;
+const selectShop = (state: ReduxState) => state.shop;
 
 export const selectShopCollection = createSelector(
   [selectShop],
   (shop) => shop.collections
 );
 
-export const selectCollection = (collectionUrlParam) => {
+export const selectCollection = (collectionUrlParam: string) => {
   return createSelector([selectShopCollection], (shopCollections) =>
     shopCollections.find(
       (shopCollection) => shopCollection.routeName === collectionUrlParam

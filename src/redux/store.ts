@@ -30,4 +30,6 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 
+export type StoreDispatch = typeof store.dispatch;
+
 export default store;

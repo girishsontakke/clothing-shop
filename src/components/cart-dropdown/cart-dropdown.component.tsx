@@ -1,14 +1,25 @@
-import React from "react";
 import "./cart-dropdown.styles.scss";
 import CustomButton from "../custom-button/custom-button.component";
-import CartItem from "../cart-item/cart-item.component";
 import { connect } from "react-redux";
 import { selectCartItems } from "../../redux/cart/cartSlice";
-import { withRouter } from "react-router-dom";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 import { toggleCartHidden } from "../../redux/cart/cartSlice";
+import { CartItemType } from "../../types/models";
+import CartItem from "../cart-item/cart-item.component";
+import { ReduxState } from "../../types/reduxState";
+import { StoreDispatch } from "../../redux/store";
 
-const CartDropDown = ({ cartItems, history, toggleCartDropDown }) => {
+interface Iprops extends RouteComponentProps<any> {
+  cartItems: CartItemType[];
+  toggleCartDropDown: () => void;
+}
+
+const CartDropDown: React.FC<Iprops> = ({
+  cartItems,
+  history,
+  toggleCartDropDown,
+}) => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -32,11 +43,14 @@ const CartDropDown = ({ cartItems, history, toggleCartDropDown }) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<
+  ReduxState,
+  { cartItems: CartItemType[] }
+>({
   cartItems: selectCartItems,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: StoreDispatch) => ({
   toggleCartDropDown: () => dispatch(toggleCartHidden()),
 });
 

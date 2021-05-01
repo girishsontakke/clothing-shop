@@ -7,6 +7,7 @@ import Header from "./components/header/header.component";
 import SignInAndSignUp from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.page";
 //firebase
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
+
 //react-router-dom
 import { Route, Switch, Redirect } from "react-router-dom";
 //redux
@@ -14,28 +15,39 @@ import { setCurrentUser, selectCurrentUser } from "./redux/user/userSlice";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import CheckoutPage from "./pages/checkout/checkout.page";
+import { ReduxState, User } from "./types/reduxState";
+import { StoreDispatch } from "./redux/store";
 
-class App extends React.Component {
-  unsubscribeFromAuth = null;
+interface Iprops extends User {
+  setUser: (user: User) => void;
+}
+interface IState {}
+
+class App extends React.Component<Iprops, IState> {
+  unsubscribeFromAuth: null | firebase.Unsubscribe = null;
   componentDidMount() {
-    const { setCurretUser } = this.props;
+    const { setUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
-        userRef.onSnapshot((snapshot) => {
-          setCurretUser({
-            id: snapshot.id,
-            ...snapshot.data(),
+        userRef?.onSnapshot((snapshot) => {
+          setUser({
+            currentUser: {
+              id: snapshot.id,
+              ...snapshot.data(),
+            },
           });
         });
       } else {
-        setCurretUser(userAuth);
+        setUser({ currentUser: userAuth });
       }
     });
   }
 
   componentWillUnmount() {
-    this.unsubscribeFromAuth();
+    if (this.unsubscribeFromAuth !== null) {
+      this.unsubscribeFromAuth();
+    }
   }
 
   render() {
@@ -58,11 +70,11 @@ class App extends React.Component {
     );
   }
 }
-const mapStateToProps = createStructuredSelector({
+const mapStateToProps = createStructuredSelector<ReduxState, User>({
   currentUser: selectCurrentUser,
 });
-const mapDispatchToProps = (dispatch) => {
-  return { setCurretUser: (user) => dispatch(setCurrentUser(user)) };
-};
+const mapDispatchToProps = (dispatch: StoreDispatch) => ({
+  setUser: (user: User) => dispatch(setCurrentUser(user.currentUser)),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

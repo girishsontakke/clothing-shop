@@ -1,18 +1,25 @@
-import React from "react";
-
 import "./custom-button.styles.scss";
 
-const CustomButton = ({
+interface Iprops {
+  isGoogleSignIn?: boolean;
+  inverted?: boolean;
+  type?: "submit" | "reset";
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+}
+
+const CustomButton: React.FC<Iprops> = ({
   children,
   isGoogleSignIn,
   inverted,
-  ...otherProps
+  onClick,
+  type,
 }) => (
   <button
     className={`${isGoogleSignIn ? "google-sign-in" : ""} ${
       inverted ? "inverted" : ""
     } custom-button`}
-    {...otherProps}
+    onClick={onClick}
+    type={type}
   >
     {children}
   </button>

@@ -1,4 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
+import { ReduxState } from "../../types/reduxState";
 
 const directorySlice = createSlice({
   name: "directory",
@@ -38,9 +39,10 @@ const directorySlice = createSlice({
       },
     ],
   },
+  reducers: {},
 });
 
-const selectDirectory = (state) => state.directory;
+const selectDirectory = (state: ReduxState) => state.directory;
 export const selectSection = createSelector(
   [selectDirectory],
   (directory) => directory.sections

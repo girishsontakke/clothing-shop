@@ -1,7 +1,14 @@
 import React from "react";
+import { CartItemType } from "../../types/models";
 import "./cart-item.styles.scss";
 
-const CartItem = ({ item: { imageUrl, name, price, quantity } }) => {
+interface Iprops {
+  item: CartItemType;
+}
+
+const CartItem: React.FC<Iprops> = ({
+  item: { imageUrl, name, price, quantity },
+}) => {
   return (
     <div className="cart-item">
       <img src={imageUrl} alt="cart-item" />

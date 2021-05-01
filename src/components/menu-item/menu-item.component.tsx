@@ -1,8 +1,20 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
+import { SectionType } from "../../types/models";
 import "./menu-item.styles.scss";
 
-const menuItem = ({ title, imageUrl, size, linkUrl, match, history }) => {
+interface Iprops extends RouteComponentProps, SectionType {
+  size?: string;
+}
+
+const MenuItem: React.FC<Iprops> = ({
+  title,
+  imageUrl,
+  size,
+  linkUrl,
+  match,
+  history,
+}) => {
   return (
     <div
       className={`menu-item ${size}`}
@@ -20,4 +32,4 @@ const menuItem = ({ title, imageUrl, size, linkUrl, match, history }) => {
   );
 };
 
-export default withRouter(menuItem);
+export default withRouter(MenuItem);

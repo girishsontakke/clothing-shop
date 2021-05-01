@@ -6,8 +6,15 @@ import CustomButton from "../custom-button/custom-button.component";
 
 import { SignInWithGoogle, auth } from "../../firebase/firebase.utils";
 
-class SignIN extends Component {
-  constructor(props) {
+interface Iprops {}
+
+interface Istate {
+  email: string;
+  password: string;
+}
+
+class SignIN extends Component<Iprops, Istate> {
+  constructor(props: Iprops) {
     super(props);
     this.state = {
       email: "",
@@ -15,13 +22,19 @@ class SignIN extends Component {
     };
   }
 
-  handleChange = (event) => {
+  handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-
-    this.setState({ [name]: value });
+    switch (name) {
+      case "email":
+        this.setState({ email: value });
+        break;
+      case "password":
+        this.setState({ password: value });
+        break;
+    }
   };
 
-  handleSubmit = async (event) => {
+  handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const { email, password } = this.state;
 
@@ -58,11 +71,7 @@ class SignIN extends Component {
           />
           <div className="buttons">
             <CustomButton type="submit">Sign In</CustomButton>
-            <CustomButton
-              type="button"
-              onClick={SignInWithGoogle}
-              isGoogleSignIn
-            >
+            <CustomButton onClick={SignInWithGoogle} isGoogleSignIn>
               SignIn With Google
             </CustomButton>
           </div>
