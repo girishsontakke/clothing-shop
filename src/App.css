@@ -2,6 +2,11 @@ body {
   font-family: "Open Sans", sans-serif;
   padding: 20px 40px;
 }
+@media (max-width: 800px) {
+  body {
+    padding: 0px;
+  }
+}
 a {
   text-decoration: none;
   color: black;
