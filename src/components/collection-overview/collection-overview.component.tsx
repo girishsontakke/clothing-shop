@@ -12,8 +12,13 @@ interface Iprops {
 
 const CollectionOverview: React.FC<Iprops> = ({ collections }) => (
   <div className="collection-overview">
-    {collections.map(({ id, title, items }) => (
-      <CollectionPreview key={id} items={items} title={title} />
+    {Object.values(collections).map(({ id, title, routeName, items }) => (
+      <CollectionPreview
+        key={id}
+        items={items}
+        title={title}
+        routeName={routeName}
+      />
     ))}
   </div>
 );
