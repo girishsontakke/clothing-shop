@@ -22,8 +22,18 @@
       }
     }
   }
+  button {
+    align-self: flex-end;
+  }
+  .test-warning {
+    color: red;
+    margin: 40px 0;
+    font-size: 1.2rem;
+    text-align: center;
+  }
   .total {
     font-size: 2rem;
     font-weight: bold;
+    align-self: flex-end;
   }
 }
