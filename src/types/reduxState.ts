@@ -17,7 +17,7 @@ export interface DirectoryType {
 }
 
 export interface Shop {
-  collections: CollectionType[];
+  collections: { [key: string]: CollectionType };
 }
 
 export interface User {

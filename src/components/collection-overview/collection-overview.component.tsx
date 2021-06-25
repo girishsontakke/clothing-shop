@@ -1,6 +1,6 @@
 import CollectionPreview from "../collection-preview/collection-preview.component";
 import { createStructuredSelector } from "reselect";
-import { selectShopCollection } from "../../redux/shop/shopSlice";
+import { selectCollectionForPreview } from "../../redux/shop/shopSlice";
 import { connect } from "react-redux";
 import "./collection-overview.styles.scss";
 import { CollectionType } from "../../types/models";
@@ -12,7 +12,7 @@ interface Iprops {
 
 const CollectionOverview: React.FC<Iprops> = ({ collections }) => (
   <div className="collection-overview">
-    {Object.values(collections).map(({ id, title, routeName, items }) => (
+    {collections.map(({ id, title, routeName, items }) => (
       <CollectionPreview
         key={id}
         items={items}
@@ -24,7 +24,7 @@ const CollectionOverview: React.FC<Iprops> = ({ collections }) => (
 );
 
 const mapStateToProps = createStructuredSelector<ReduxState, Iprops>({
-  collections: selectShopCollection,
+  collections: selectCollectionForPreview,
 });
 
 export default connect(mapStateToProps)(CollectionOverview);
