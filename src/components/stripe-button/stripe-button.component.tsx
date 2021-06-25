@@ -8,8 +8,7 @@ const StripeCheckoutButton: React.FC<IProps> = ({ price }) => {
     console.log(token);
     alert("Payment Successful");
   };
-  const publishableKey =
-    "pk_test_51J5Yq0SCR2r1huHpjb7GzjD4knq20XKQa0kbSTVXbqsgm89jJbyL8GxfyrH39MACzTqRBEosTzNsE2i4d1nFoEul00lkVXwR1u";
+  const publishableKey = process.env.REACT_APP_PUBLISHABLE_KEY!;
   const priceForStripe = 100 * price;
   return (
     <StripeCheckout
