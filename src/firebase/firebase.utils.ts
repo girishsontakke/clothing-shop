@@ -2,6 +2,7 @@ import firebase from "firebase/app";
 
 import "firebase/firestore";
 import "firebase/auth";
+import { CartItemType } from "../types/models";
 
 const config = {
   apiKey: "AIzaSyAjMzx4xj_nvkSwyNbNo11HveOWgUUMpJM",
@@ -15,6 +16,21 @@ const config = {
 };
 
 firebase.initializeApp(config);
+export const auth = firebase.auth();
+export const firestore = firebase.firestore();
+
+export const addCollectionAndDocument = async (
+  collectionKey: string,
+  objectToAdd: { title: string; items: CartItemType[] }[]
+) => {
+  const collectionRef = firestore.collection(collectionKey);
+  const batchObject = firestore.batch();
+  objectToAdd.forEach((obj) => {
+    const docRef = collectionRef.doc();
+    batchObject.set(docRef, obj);
+  });
+  return await batchObject.commit();
+};
 
 export const createUserProfileDocument = async (
   userAuth: firebase.User | null,
@@ -36,9 +52,6 @@ export const createUserProfileDocument = async (
   }
   return userRef;
 };
-
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
 
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: "select_account" });
