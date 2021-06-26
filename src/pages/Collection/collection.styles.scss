@@ -5,7 +5,7 @@
   .title {
     font-size: 38px;
     font-weight: bold;
-    font-family: serif, 'Segoe UI', Tahoma, Geneva, Verdana, ;
+    font-family: serif, "Segoe UI", Tahoma, Geneva, Verdana;
     color: #494747;
     margin: 0 auto 20px;
   }
@@ -17,6 +17,14 @@
 
     & .collection-item {
       margin-bottom: 30px;
+    }
+    @media (max-width: 800px) {
+      grid-template-columns: 1fr auto 1fr;
+
+      & .collection-item {
+        width: 80vw;
+        grid-column-start: 2;
+      }
     }
   }
 }
