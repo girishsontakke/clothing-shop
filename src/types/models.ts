@@ -7,7 +7,7 @@ export interface CartItemType {
 }
 
 export interface CollectionType {
-  id: number;
+  id: string;
   title: string;
   routeName: string;
   items: CartItemType[];

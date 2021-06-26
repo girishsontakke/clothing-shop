@@ -1,14 +1,20 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import SHOP_DATA from "../../pages/shop/shop.data";
 import { ReduxState } from "../../types/reduxState";
 
 const shopSlice = createSlice({
   name: "shop",
   initialState: {
-    collections: SHOP_DATA,
+    collections: {},
   },
-  reducers: {},
+  reducers: {
+    setCollection: (state, action) => {
+      state.collections = action.payload;
+    },
+  },
 });
+
+export const { setCollection } = shopSlice.actions;
+
 const selectShop = (state: ReduxState) => state.shop;
 
 export const selectShopCollection = createSelector(
