@@ -6,6 +6,10 @@
   .title {
     font-size: 28px;
     margin-bottom: 25px;
+
+    @media (max-width: 800px) {
+      margin-left: 10vw;
+    }
   }
 
   .preview {
@@ -14,6 +18,16 @@
 
     .collection-item {
       margin-left: 10px;
+    }
+
+    @media (max-width: 800px) {
+      flex-direction: column;
+
+      .collection-item {
+        width: 80vw;
+        align-self: center;
+        margin-bottom: 20px;
+      }
     }
   }
 }
