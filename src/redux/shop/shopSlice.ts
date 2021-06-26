@@ -4,7 +4,7 @@ import { ReduxState } from "../../types/reduxState";
 const shopSlice = createSlice({
   name: "shop",
   initialState: {
-    collections: {},
+    collections: null,
   },
   reducers: {
     setCollection: (state, action) => {
@@ -24,13 +24,12 @@ export const selectShopCollection = createSelector(
 
 export const selectCollectionForPreview = createSelector(
   [selectShopCollection],
-  (collection) => Object.values(collection)
+  (collection) => (collection ? Object.values(collection) : [])
 );
 
 export const selectCollection = (collectionUrlParam: any) => {
-  return createSelector(
-    [selectShopCollection],
-    (shopCollections) => shopCollections[collectionUrlParam]
+  return createSelector([selectShopCollection], (shopCollections) =>
+    shopCollections ? shopCollections[collectionUrlParam] : null
   );
 };
 export default shopSlice.reducer;
