@@ -1,10 +1,11 @@
+@import "../../styles/mixins";
 .directory-menu {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  @media (max-width: 800px) {
+  @include small {
     flex-direction: column;
   }
 }

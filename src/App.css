@@ -2,7 +2,7 @@ body {
   font-family: "Open Sans", sans-serif;
   padding: 20px 40px;
 }
-@media (max-width: 800px) {
+@media (max-width: 600px) {
   body {
     padding: 0px;
   }

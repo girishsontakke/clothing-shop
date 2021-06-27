@@ -1,3 +1,4 @@
+@import "../../styles/mixins";
 .collection-page {
   display: flex;
   flex-direction: column;
@@ -18,7 +19,14 @@
     & .collection-item {
       margin-bottom: 30px;
     }
-    @media (max-width: 800px) {
+    @include medium {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      & .collection-item {
+        width: 100%;
+      }
+    }
+    @include small {
       grid-template-columns: 1fr auto 1fr;
 
       & .collection-item {
