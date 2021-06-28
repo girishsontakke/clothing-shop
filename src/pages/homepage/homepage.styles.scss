@@ -5,6 +5,10 @@
   align-items: center;
   padding: 20px 80px;
 
+  @include medium {
+    padding: 0;
+  }
+
   @include small {
     padding: 20px;
   }
