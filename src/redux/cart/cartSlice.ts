@@ -54,7 +54,7 @@ export const selectHiddenDropDown = createSelector(
 
 export const selectCartTotal = createSelector([selectCartItems], (cartItems) =>
   cartItems.reduce(
-    (accumulatedTotal: number, cartItem: CartItemType) =>
+    (accumulatedTotal, cartItem) =>
       accumulatedTotal + cartItem.quantity! * cartItem.price,
     0
   )
