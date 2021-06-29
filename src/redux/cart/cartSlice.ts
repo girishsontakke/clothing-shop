@@ -29,12 +29,8 @@ export const cartSlice = createSlice({
   },
 });
 
-export const {
-  addItem,
-  toggleCartHidden,
-  removeItem,
-  clearItem,
-} = cartSlice.actions;
+export const { addItem, toggleCartHidden, removeItem, clearItem } =
+  cartSlice.actions;
 
 const selectCart = (state: ReduxState) => state.cart;
 export const selectCartItems = createSelector(
@@ -46,8 +42,7 @@ export const selectCartItemsCount = createSelector(
   [selectCartItems],
   (cartItems) =>
     cartItems.reduce(
-      (accumulatedCount: number, cartItem: CartItemType) =>
-        accumulatedCount + cartItem.quantity!,
+      (accumulatedCount, cartItem) => accumulatedCount + cartItem.quantity!,
       0
     )
 );
