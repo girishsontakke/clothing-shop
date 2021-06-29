@@ -17,6 +17,7 @@ import { createStructuredSelector } from "reselect";
 import CheckoutPage from "./pages/checkout/checkout.page";
 import { ReduxState, User } from "./types/reduxState";
 import { StoreDispatch } from "./redux/store";
+import CartContextProvider from "./context/cart/cart.context";
 
 interface Iprops extends User {
   setUser: (user: User) => void;
@@ -54,7 +55,9 @@ class App extends React.Component<Iprops, IState> {
     const { currentUser } = this.props;
     return (
       <>
-        <Header />
+        <CartContextProvider>
+          <Header />
+        </CartContextProvider>
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route path="/shop" component={ShopPage} />

@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { NavLink } from "react-router-dom";
 import "./header.styles.scss";
@@ -7,15 +8,14 @@ import CartDropDown from "../cart-dropdown/cart-dropdown.component";
 //redux
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../redux/user/userSlice";
-import { selectHiddenDropDown } from "../../redux/cart/cartSlice";
 import { createStructuredSelector } from "reselect";
 import { ReduxState, User } from "../../types/reduxState";
+import { CartContext } from "../../context/cart/cart.context";
 
-interface Iprops extends User {
-  hiddenDropDown: boolean;
-}
+interface Iprops extends User {}
 
-const Header: React.FC<Iprops> = ({ currentUser, hiddenDropDown }) => {
+const Header: React.FC<Iprops> = ({ currentUser }) => {
+  const { hidden } = useContext(CartContext);
   return (
     <div className="header">
       <NavLink className="logo-container" to="/">
@@ -42,13 +42,12 @@ const Header: React.FC<Iprops> = ({ currentUser, hiddenDropDown }) => {
         )}
         <CartIcon />
       </div>
-      {!hiddenDropDown ? <CartDropDown /> : null}
+      {!hidden ? <CartDropDown /> : null}
     </div>
   );
 };
 
 const mapStateToProps = createStructuredSelector<ReduxState, Iprops>({
-  hiddenDropDown: selectHiddenDropDown,
   currentUser: selectCurrentUser,
 });
 export default connect(mapStateToProps)(Header);
