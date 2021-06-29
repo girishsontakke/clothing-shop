@@ -1,5 +1,4 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { CartItemType } from "../../types/models";
 import { ReduxState } from "../../types/reduxState";
 import {
   addItemToCartUtil,
