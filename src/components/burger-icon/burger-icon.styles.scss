@@ -1,0 +1,48 @@
+@import "../../styles/mixins";
+.burger {
+  display: none;
+  position: absolute;
+  cursor: pointer;
+  right: 30px;
+  top: 45px;
+  width: 33.56px;
+  height: 4px;
+  border-radius: 4px;
+  background: gray;
+  @include transition-ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: -8px;
+    width: 33.56px;
+    height: 4px;
+    border-radius: 4px;
+    background: gray;
+    @include transition-ease;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    width: 33.56px;
+    height: 4px;
+    border-radius: 4px;
+    background: gray;
+    @include transition-ease;
+  }
+
+  &.open {
+    background: transparent;
+
+    &::before {
+      transform: rotate(45deg) translate(5px, 8px);
+    }
+
+    &::after {
+      width: 33.56px;
+      transform: rotate(-45deg) translate(2px, -7px);
+    }
+  }
+}

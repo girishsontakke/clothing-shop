@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { NavLink } from "react-router-dom";
 import "./header.styles.scss";
@@ -11,13 +11,20 @@ import { selectCurrentUser } from "../../redux/user/userSlice";
 import { createStructuredSelector } from "reselect";
 import { ReduxState, User } from "../../types/reduxState";
 import { CartContext } from "../../context/cart/cart.context";
+import BurgerIcon from "../burger-icon/burger-icon.component";
 
 interface Iprops extends User {}
 
 const Header: React.FC<Iprops> = ({ currentUser }) => {
   const { hidden } = useContext(CartContext);
+  const [expand, setExpand] = useState<boolean>(false);
+  const expandNavLinks = () => {
+    setExpand((prevExpand) => !prevExpand);
+  };
+
   return (
-    <div className="header">
+    <div className={`header ${expand ? "expand" : ""}`}>
+      <BurgerIcon expand={expand} expandNavLinks={expandNavLinks} />
       <NavLink className="logo-container" to="/">
         <Logo className="logo" />
       </NavLink>
