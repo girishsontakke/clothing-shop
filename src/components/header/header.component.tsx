@@ -48,6 +48,9 @@ const Header: React.FC<Iprops> = ({ currentUser }) => {
           </NavLink>
         )}
         <CartIcon />
+        <NavLink className="option checkoutLink" to="/checkout">
+          {"Checkout".toUpperCase()}
+        </NavLink>
       </div>
       {!hidden ? <CartDropDown /> : null}
     </div>

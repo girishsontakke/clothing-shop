@@ -7,7 +7,6 @@
   justify-content: space-between;
   margin-bottom: 25px;
   overflow-y: hidden;
-  position: relative;
 
   .logo-container {
     height: 100%;
@@ -25,6 +24,9 @@
     .option {
       padding: 10px 15px;
       cursor: pointer;
+    }
+    .checkoutLink {
+      display: none;
     }
   }
   @include small {
@@ -45,6 +47,10 @@
 
       .option {
         padding: 5px 15px;
+      }
+
+      .checkoutLink {
+        display: block;
       }
     }
   }
