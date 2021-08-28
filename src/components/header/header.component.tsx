@@ -12,6 +12,7 @@ import { createStructuredSelector } from "reselect";
 import { ReduxState, User } from "../../types/reduxState";
 import { CartContext } from "../../context/cart/cart.context";
 import BurgerIcon from "../burger-icon/burger-icon.component";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 interface Iprops extends User {}
 
@@ -21,9 +22,10 @@ const Header: React.FC<Iprops> = ({ currentUser }) => {
   const expandNavLinks = () => {
     setExpand((prevExpand) => !prevExpand);
   };
+  const isSmall = useMediaQuery("(max-width: 600px)");
 
   return (
-    <div className={`header ${expand ? "expand" : ""}`}>
+    <div className={`header ${expand && isSmall ? "expand" : ""}`}>
       <BurgerIcon expand={expand} expandNavLinks={expandNavLinks} />
       <NavLink className="logo-container" to="/">
         <Logo className="logo" />
