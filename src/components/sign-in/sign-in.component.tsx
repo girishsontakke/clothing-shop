@@ -42,8 +42,7 @@ class SignIN extends Component<Iprops, Istate> {
       await auth.signInWithEmailAndPassword(email, password);
       this.setState({ email: "", password: "" });
     } catch (error) {
-      console.error(error.message);
-      alert(error.message);
+      console.error(error);
     }
   };
 

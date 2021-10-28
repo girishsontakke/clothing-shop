@@ -47,7 +47,7 @@ export const createUserProfileDocument = async (
     try {
       userRef.set({ displayName, email, createdAt, ...additionalData });
     } catch (error) {
-      console.error("error occured during creating user", error.message);
+      console.error("error occured during creating user", error);
     }
   }
   return userRef;
@@ -60,7 +60,7 @@ export const SignInWithGoogle = async () => {
   try {
     await auth.signInWithPopup(provider);
   } catch (error) {
-    alert(error.message);
+      console.error(error)
   }
 };
 

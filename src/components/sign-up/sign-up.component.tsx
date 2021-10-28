@@ -40,7 +40,7 @@ class SignUp extends React.Component<Iprops, Istate> {
         confirmPassword: "",
       });
     } catch (error) {
-      console.error(error.message);
+      console.error(error);
     }
   };
   handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
