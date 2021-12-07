@@ -25,8 +25,10 @@
   &.google-sign-in {
     background-color: #4285f4;
     color: white;
-    letter-spacing: normal;
+    letter-spacing: 0.1px;
     line-height: normal;
+    font-size: 12px;
+    line-height: 22px;
 
     &:hover {
       background-color: #357ae8;
