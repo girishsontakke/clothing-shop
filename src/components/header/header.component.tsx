@@ -37,9 +37,6 @@ const Header: React.FC<Iprops> = ({ currentUser }) => {
         <NavLink className="option" to="/shop">
           {"shop".toUpperCase()}
         </NavLink>
-        <NavLink className="option" to="/contact">
-          {"contact".toUpperCase()}
-        </NavLink>
         {currentUser ? (
           <div className="option" onClick={() => auth.signOut()}>
             {"sign out".toUpperCase()}

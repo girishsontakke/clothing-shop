@@ -5,6 +5,7 @@ interface Iprops {
   inverted?: boolean;
   type?: "submit" | "reset";
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  children?: any;
 }
 
 const CustomButton: React.FC<Iprops> = ({

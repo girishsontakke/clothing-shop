@@ -3,7 +3,8 @@ import StripeCheckout, { Token } from "react-stripe-checkout";
 interface IProps {
   price: number;
 }
-const StripeCheckoutButton: React.FC<IProps> = ({ price }) => {
+function StripeCheckoutButton(props: IProps) {
+  const { price } = props;
   const onToken = (token: Token) => {
     console.log(token);
     alert("Payment Successful");
@@ -25,6 +26,6 @@ const StripeCheckoutButton: React.FC<IProps> = ({ price }) => {
       panelLabel="Pay Now"
     />
   );
-};
+}
 
 export default StripeCheckoutButton;

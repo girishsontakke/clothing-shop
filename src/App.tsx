@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 //components
 import HomePage from "./pages/homepage/homepage.page";
@@ -22,13 +22,12 @@ import CartContextProvider from "./context/cart/cart.context";
 interface Iprops extends User {
   setUser: (user: User) => void;
 }
-interface IState {}
 
-class App extends React.Component<Iprops, IState> {
-  unsubscribeFromAuth: null | firebase.Unsubscribe = null;
-  componentDidMount() {
-    const { setUser } = this.props;
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+function App(props: Iprops) {
+  const { setUser } = props;
+  useEffect(() => {
+    let unsubscribeFromAuth: null | firebase.Unsubscribe = null;
+    unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
         userRef?.onSnapshot((snapshot) => {
@@ -43,35 +42,33 @@ class App extends React.Component<Iprops, IState> {
         setUser({ currentUser: userAuth });
       }
     });
-  }
 
-  componentWillUnmount() {
-    if (this.unsubscribeFromAuth !== null) {
-      this.unsubscribeFromAuth();
-    }
-  }
+    return () => {
+      if (unsubscribeFromAuth !== null) {
+        unsubscribeFromAuth();
+      }
+    };
+  }, [setUser]);
 
-  render() {
-    const { currentUser } = this.props;
-    return (
-      <>
-        <CartContextProvider>
-          <Header />
-        </CartContextProvider>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/shop" component={ShopPage} />
-          <Route exact path="/checkout" component={CheckoutPage} />
-          <Route
-            path="/signin"
-            render={() =>
-              currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
-            }
-          />
-        </Switch>
-      </>
-    );
-  }
+  const { currentUser } = props;
+  return (
+    <>
+      <CartContextProvider>
+        <Header />
+      </CartContextProvider>
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route exact path="/checkout" component={CheckoutPage} />
+        <Route
+          path="/signin"
+          render={() =>
+            currentUser ? <Redirect to="/" /> : <SignInAndSignUp />
+          }
+        />
+      </Switch>
+    </>
+  );
 }
 const mapStateToProps = createStructuredSelector<ReduxState, User>({
   currentUser: selectCurrentUser,

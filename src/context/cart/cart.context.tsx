@@ -6,7 +6,9 @@ export const CartContext = createContext({
   toggleHidden: () => {},
 });
 
-interface Iprops {}
+interface Iprops {
+  children?: React.ReactNode;
+}
 const CartContextProvider: React.FC<Iprops> = ({ children }) => {
   const [hidden, setHidden] = useState<boolean>(true);
   const toggleHidden = () => {
